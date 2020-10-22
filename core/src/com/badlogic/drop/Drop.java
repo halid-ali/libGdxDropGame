@@ -44,6 +44,4 @@ public class Drop extends Game {
         batch.dispose();
         font.dispose();
     }
-
-
 }

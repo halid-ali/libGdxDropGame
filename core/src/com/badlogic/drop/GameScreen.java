@@ -19,23 +19,21 @@ import java.util.Iterator;
 public class GameScreen implements Screen {
     final Drop game;
 
-    private Texture dropImage;
-    private Texture bucketImage;
-    private Sound dropSound;
-    private Music rainMusic;
+    private final Texture dropImage;
+    private final Texture bucketImage;
+    private final Sound dropSound;
+    private final Music rainMusic;
 
     /*
      * camera will be used to ensure we can render our target resolution 800x480
      * no matter what the actual screen resolution is.
      */
-    private OrthographicCamera camera;
+    private final OrthographicCamera camera;
 
-    private Rectangle bucket;
-
+    private final Rectangle bucket;
+    private final Array<Rectangle> rainDrops;
     //helps to transform the touch/mouse coordinate to the camera's coordinate system.
     private Vector3 touchPos;
-
-    private Array<Rectangle> rainDrops;
     private long lastDropTime;
 
     private int dropsGathered;
@@ -66,7 +64,7 @@ public class GameScreen implements Screen {
         bucket = new Rectangle();
 
         //screen center in horizontally
-        bucket.x = 800 / 2 - 64 / 2;
+        bucket.x = (float) (800 / 2 - 64 / 2);
 
         /*
          * 20 px above from bottom edge of the screen.
@@ -126,7 +124,7 @@ public class GameScreen implements Screen {
             camera.unproject(touchPos);
 
             //change the bucket's x-axis position to be centered around the touch/mouse coordinates.
-            bucket.x = touchPos.x - 64 / 2;
+            bucket.x = touchPos.x - (float) (64 / 2);
         }
 
         //if the user wants to control bucket position with the keyboard.
